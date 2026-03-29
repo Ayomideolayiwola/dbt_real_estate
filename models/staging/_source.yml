@@ -1,0 +1,19 @@
+# models/sources.yml
+version: 2
+
+sources:
+  - name: real_estate                      
+    database: RAW_REAL_ESTATE              
+    schema: REALESTATE_RAW             
+    tables:
+      - name: regions
+      - name: cities                
+      - name: property_types
+      - name: agencies
+      - name: agents
+      - name: clients
+      - name: properties
+      - name: payment_details
+      - name: transactions
+      - name: accm_completion_update
+     
