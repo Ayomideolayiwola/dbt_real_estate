@@ -1,8 +1,8 @@
 version: 2
 
 models:
-  - name: stg_regions
-    description: "Staging model for region reference data"
+  - name: base_regions
+    description: "Base model for region reference data"
     columns:
       - name: region_id
         description: "Unique identifier for the region"

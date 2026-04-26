@@ -21,18 +21,6 @@ models:
         description: "Name of the city"
         tests:
           - not_null
-      - name: postal_code
-        description: "Postal code for the city"
-        data_tests:
-          - not_null
-      - name: latitude
-        description: "Latitude coordinate of the city"
-        data_tests:
-          - not_null
-      - name: longitude
-        description: "Longitude coordinate of the city"
-        data_tests:
-          - not_null
       - name: population
         description: "Population of the city"
         data_tests:

@@ -1,9 +1,4 @@
-with clients as (
-    select * from {{ ref('base_clients') }}
-)
-
-
-select
+select 
 client_id,
 client_type,
 first_name,
@@ -15,7 +10,9 @@ email,
 phone,
 address,
 city_id,
+iban,
+tax_id,
 is_verified,
 registered_at
-from clients
 
+from {{ source('real_estate', 'clients') }}

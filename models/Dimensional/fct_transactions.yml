@@ -1,8 +1,8 @@
 version: 2
 
 models:
-  - name: stg_transactions
-    description: "Staging table for transactions. Cleaned and standardized real estate transaction data."
+  - name: fct_transactions
+    description: "Preparation table for transactions. Cleaned and standardized real estate transaction data."
     columns:
       - name: transaction_id
         description: "Unique identifier for the transaction"
@@ -17,7 +17,7 @@ models:
           - not_null
           - relationships:
               arguments:
-                to: ref('stg_properties')
+                to: ref('dim_properties')
                 field: property_id
       - name: client_id
         description: "Foreign key to the stg clients"
@@ -25,7 +25,7 @@ models:
           - not_null
           - relationships:
               arguments:
-                to: ref('stg_clients')
+                to: ref('dim_clients')
                 field: client_id
       - name: agent_id
         description: "Foreign key to the agent involved in the transaction"
@@ -33,14 +33,14 @@ models:
           - not_null
           - relationships:
               arguments:
-                to: ref('stg_agents')
+                to: ref('dim_agents')
                 field: agent_id
       - name: payment_id
         description: "Foreign key to the payment details associated with the transaction"
         data_tests:
           - relationships:
               arguments:
-                to: ref('stg_payment_details')
+                to: ref('prep_payment_details')
                 field: payment_id
       - name: transaction_type
         description: "Type of transaction (e.g., sale, rental)"

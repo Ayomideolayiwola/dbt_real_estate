@@ -1,19 +1,19 @@
 version: 2
 
 models:
-  - name: stg_property_types
-    description: "Staging model for property type reference data"
+  - name: base_property_types
+    description: "Base model for property type reference data"
     columns:
-      - name: type_id
+      - name: property_type_id
         description: "Unique identifier for the property type"
         data_tests:
           - not_null
           - unique
-      - name: type_code
+      - name: property_type_code
         description: "Code or abbreviation for the property type"
         data_tests:
           - not_null
-      - name: type_name
+      - name: property_type_name
         description: "Name of the property type (e.g., apartment, house, commercial)"
         data_tests:
           - not_null

@@ -36,10 +36,6 @@ models:
               arguments:
                 to: ref('prep_cities')
                 field: city_id
-      - name: iban
-        description: "International Bank Account Number for the client"
-      - name: tax_id
-        description: "Tax identification number for the client"
       - name: is_verified
         description: "Indicates whether the client's identity has been verified (true/false)"
         data_tests:

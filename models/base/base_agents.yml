@@ -1,8 +1,8 @@
 version: 2
 
 models:
-  - name: stg_agents
-    description: "Staging model for real estate agent data"
+  - name: base_agents
+    description: "Base model for real estate agent data"
     columns:
       - name: agent_id
         description: "Unique identifier for the agent"
@@ -15,7 +15,7 @@ models:
           - not_null
           - relationships:
               arguments:
-                to: ref('stg_agencies')
+                to: ref('base_agencies')
                 field: agency_id
       - name: first_name
         description: "First name of the agent"

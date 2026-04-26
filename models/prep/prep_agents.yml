@@ -17,12 +17,8 @@ models:
               arguments:
                 to: ref('prep_agencies')
                 field: agency_id
-      - name: first_name
-        description: "First name of the agent"
-      - name: last_name
-        description: "Last name of the agent"
-      - name: license_number
-        description: "Agent's professional license number"
+      - name: full_name
+        description: " name of the agent"
       - name: email
         description: "Email address of the agent"
       - name: phone
@@ -33,10 +29,3 @@ models:
         description: "Agent's area of specialization (e.g., residential, commercial)"
       - name: years_experience
         description: "Number of years the agent has been in the industry"
-      - name: is_active
-        description: "Indicates whether the agent is currently active (true/false)"
-        data_tests:
-          - not_null
-          - accepted_values:
-              arguments:
-                values: [ 1 ]

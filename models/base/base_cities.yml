@@ -1,8 +1,8 @@
 version: 2
 
 models:
-  - name: stg_cities
-    description: "Staging model for city reference data"
+  - name: base_cities
+    description: "base model for city reference data"
     columns:
       - name: city_id
         description: "Unique identifier for the city"
@@ -15,7 +15,7 @@ models:
           - not_null
           - relationships:
               arguments:
-                to: ref('stg_regions')
+                to: ref('base_regions')
                 field: region_id
       - name: city_name
         description: "Name of the city"

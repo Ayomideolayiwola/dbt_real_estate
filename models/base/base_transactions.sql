@@ -1,8 +1,4 @@
-with transactions as (
-    select * from {{ ref('base_transactions') }}
-)
-
-select
+select 
 transaction_id,
 transaction_ref,
 property_id,
@@ -21,4 +17,5 @@ contract_start,
 contract_end,
 notes,
 created_at
-from transactions
+
+from {{ source('real_estate', 'transactions') }}

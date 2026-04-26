@@ -13,8 +13,6 @@ models:
         description: "Method used for payment (e.g., cash, bank transfer, online)"
       - name: bank_name
         description: "Name of the bank used for the payment, if applicable"
-      - name: iban
-        description: "International Bank Account Number used for the payment, if applicable"
       - name: mortgage_rate
         description: "Mortgage interest rate applied to the transaction, if applicable"
       - name: mortgage_term_years

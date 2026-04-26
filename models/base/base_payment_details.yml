@@ -1,8 +1,8 @@
 version: 2
 
 models:
-  - name: stg_payment_details
-    description: "Staging model for payment details from the real estate system"
+  - name: base_payment_details
+    description: "Base model for payment details from the real estate system"
     columns:
       - name: payment_id
         description: "Unique identifier for the payment transaction"

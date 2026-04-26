@@ -1,5 +1,5 @@
 with transactions as (
-    select * from {{ ref('base_transactions') }}
+    select * from {{ ref('prep_transactions') }}
 )
 
 select
@@ -21,4 +21,5 @@ contract_start,
 contract_end,
 notes,
 created_at
+
 from transactions

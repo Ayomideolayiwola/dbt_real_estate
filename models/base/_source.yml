@@ -1,0 +1,408 @@
+# models/sources.yml
+version: 2
+
+sources:
+  - name: real_estate                      
+    database: RAW_REAL_ESTATE              
+    schema: REALESTATE_RAW             
+    tables:
+      - name: regions
+        description: "Source table for regions data from the real estate system"
+        columns:
+          - name: region_id
+            description: "Unique identifier for the region"
+            data_tests:
+              - not_null
+              - unique
+          - name: region_code
+            description: "Code for the region"
+          - name: region_name
+            description: "Name of the region"
+          - name: price_multiplier
+            description: "Multiplier for property prices in the region"
+          - name: capital_city
+            description: "Capital city of the region"
+          - name: population
+            description: "Population of the region" 
+          - name: area_sqkm 
+            description: "Area of the region in square kilometers"
+
+      - name: cities       
+        description: "Source table for cities data from the real estate system"
+        columns:
+          - name: city_id
+            description: "Unique identifier for the city"
+            data_tests:
+              - not_null
+              - unique
+          - name: region_id
+            description: "Foreign key to the region this city belongs to"
+            data_tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: ref('regions')
+                    field: region_id
+          - name: city_name
+            description: "Name of the city"
+          - name: postal_code
+            description: "Postal code for the city"
+          - name: latitude
+            description: "Latitude coordinate of the city"
+          - name: longitude
+            description: "Longitude coordinate of the city"
+          - name: population
+            description: "Population of the city"
+          - name: is_major_city
+            description: "Indicates whether the city is considered a major city (true/false)"    
+            data_tests:
+              - not_null
+              - accepted_values:
+                  arguments:
+                    values: [ 0, 1 ]   
+
+      - name: property_types
+        description: "Source table for property types data from the real estate system"
+        columns:
+          - name: type_id
+            description: "Unique identifier for the property type"
+            data_tests:
+              - not_null
+              - unique
+          - name: type_code
+            description: "Code for the property type"
+          - name: type_name
+            description: "Name of the property type (e.g., Apartment, House, Commercial)"
+          - name: base_price_sqm
+            description: "Base price per square meter for this property type"
+          - name: typical_size_min
+            description: "Typical minimum size in square meters for this property type"
+          - name: typical_size_max
+            description: "Typical maximum size in square meters for this property type"
+          - name: is_residential
+            description: "Indicates if the property type is residential (true/false)"
+            data_tests:
+              - not_null
+              - accepted_values:
+                  arguments:
+                    values: [ 0, 1 ]  
+
+      - name: agencies
+        description: "Source table for real estate agencies data from the real estate system"
+        columns:
+          - name: agency_id
+            description: "Unique identifier for the agency"
+            data_tests:
+              - not_null
+              - unique
+          - name: agency_name
+            description: "Name of the real estate agency"
+          - name: license_number
+            description: "License number or registration code for the agency"
+          - name: city_id
+            description: "Foreign key to the city where the agency is located"
+            data_tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: ref('cities')
+                    field: city_id
+          - name: address
+            description: "Full address of the agency"
+          - name: phone
+            description: "Contact phone number for the agency"
+          - name: email
+            description: "Contact email address for the agency"
+          - name: website
+            description: "Website URL for the agency"
+          - name: established_year
+            description: "Year when the agency was established"
+          - name: is_active
+            description: "Indicates whether the agency is currently active (true/false)"
+            data_tests:
+              - not_null
+              - accepted_values:
+                  arguments:
+                    values: [ 1 ]
+
+      - name: agents
+        description: "Source table for real estate agents data from the real estate system"
+        columns:
+          - name: agent_id
+            description: "Unique identifier for the agent"
+            data_tests:
+              - not_null
+              - unique
+          - name: agency_id
+            description: "Foreign key to the agency the agent belongs to"
+            data_tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: ref('agencies')
+                    field: agency_id
+          - name: first_name
+            description: "First name of the agent"
+          - name: last_name
+            description: "Last name of the agent"
+          - name: license_number
+            description: "Agent's professional license number"
+          - name: email
+            description: "Contact email address for the agent"
+          - name: phone
+            description: "Contact phone number for the agent"
+          - name: hire_date
+            description: "Date when the agent was hired"
+          - name: specialization
+            description: "Agent's area of specialization (e.g., residential, commercial)"
+          - name: years_experience
+            description: "Number of years the agent has been in the industry"
+          - name: is_active
+            description: "Indicates whether the agent is currently active "
+            data_tests:
+              - not_null
+              - accepted_values:
+                  arguments:
+                    values: [ 1 ]
+      - name: clients
+        description: "Source table for client/customer data from the real estate system"
+        columns:
+          - name: client_id
+            description: "Unique identifier for the client"
+            data_tests:
+              - not_null
+              - unique
+          - name: client_type
+            description: "Type of client (e.g., individual, corporate)"
+            data_tests:
+              - not_null
+          - name: first_name
+            description: "First name of the client"
+          - name: last_name
+            description: "Last name of the client"
+          - name: company_name
+            description: "Name of the company if the client is a corporate entity"
+          - name: date_of_birth
+            description: "Date of birth of the client (if individual)"
+          - name: nationality
+            description: " nationality of the client"
+          - name: email
+            description: "Email address of the client"
+          - name: phone
+            description: "Phone number of the client"
+          - name: address
+            description: "Street address of the client"
+          - name: city_id
+            description: "Foreign key to the city where the client is located"
+            data_tests:
+              - relationships:
+                  arguments:
+                    to: ref('cities')
+                    field: city_id
+          - name: iban
+            description: "International Bank Account Number for the client"
+          - name: tax_id
+            description: "Tax identification number for the client"
+          - name: is_verified
+            description: "Indicates whether the client's identity has been verified (true/false)"
+            data_tests:
+              - not_null
+              - accepted_values:
+                  arguments:
+                    values: [ 1 ]
+          - name: registered_at
+            description: "Timestamp when the client registered in the system"
+
+      - name: properties
+        description: "Source table for property listings data from the real estate system"
+        columns:
+          - name: property_id
+            description: "Unique identifier for the property"
+            data_tests:
+              - not_null
+              - unique
+          - name: type_id
+            description: "Foreign key to the property type"
+            data_tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: ref('property_types')
+                    field: type_id
+          - name: city_id
+            description: "Foreign key to the city where the property is located"
+            data_tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: ref('cities')
+                    field: city_id
+          - name: agent_id
+            description: "Foreign key to the agent responsible for the property"
+            data_tests:
+              - relationships:
+                  arguments:
+                    to: ref('agents')
+                    field: agent_id
+          - name: address
+            description: "Full address of the property"
+          - name: postal_code
+            description: "Postal code for the property location"
+          - name: floor_number
+            description: "Floor number of the property (if applicable)"
+          - name: total_floors
+            description: "Total number of floors in the building (if applicable)"
+          - name: size_sqm
+            description: "Size of the property in square meters"
+          - name: num_rooms
+            description: "Total number of rooms in the property"
+          - name: num_bedrooms
+            description: "Number of bedrooms in the property"
+          - name: num_bathrooms
+            description: "Number of bathrooms in the property"
+          - name: has_parking
+            description: "Indicates if the property has parking available (true/false)"
+            data_tests:
+              - not_null
+              - accepted_values:
+                  arguments:
+                    values: [ 0, 1 ]
+          - name: has_garden
+            description: "Indicates if the property has a garden (true/false)"    
+            data_tests:
+              - not_null
+              - accepted_values:
+                  arguments:
+                    values: [ 0, 1 ]
+          - name: has_balcony
+            description: "Indicates if the property has a balcony (true/false)"
+            data_tests:
+              - not_null
+              - accepted_values:
+                  arguments:
+                    values: [ 0, 1 ]
+          - name: condition_status
+            description: "Condition status of the property"
+          - name: build_year
+            description: " when the property was built"
+          - name: energy_class
+            description: "Energy efficiency class of the property (e.g., A, B, C)"
+          - name: listing_price
+            description: "Listing price of the property"
+          - name: is_available
+            description: "Indicates if the property is currently available for sale/rent (true/false)"
+            data_tests:
+              - not_null
+              - accepted_values:
+                  arguments:
+                    values: [ 1 ]
+          - name: listed_at
+            description: "Timestamp when the property was listed in the system"
+          - name: latitude
+            description: "Latitude coordinate of the property location"
+          - name: longitude
+            description: "Longitude coordinate of the property location"
+
+      - name: payment_details
+        description: "Source table for payment details data from the real estate system"
+        columns:
+          - name: payment_id
+            description: "Unique identifier for the payment"
+            data_tests:
+              - not_null
+              - unique
+          - name: payment_method
+            description: "Method of payment (e.g., credit card, bank transfer, cash)"
+          - name: bank_name
+            description: "Name of the bank used for the payment, if applicable"
+          - name: iban
+            description: "International Bank Account Number used for the payment, if applicable"
+          - name: mortgage_rate
+            description: "Mortgage interest rate applied to the transaction, if applicable"
+          - name: mortgage_term_years
+            description: "Duration of the mortgage in years, if applicable"
+          - name: down_payment_pct
+            description: "Percentage of the total price paid as a down payment, if applicable"
+
+      - name: transactions
+        description: "Source table for real estate transactions data from the real estate system"
+        columns:
+          - name: transaction_id
+            description: "Unique identifier for the transaction"
+            data_tests:
+              - not_null
+              - unique
+          - name: transaction_ref
+            description: "Reference code for the transaction, if available"
+          - name: property_id
+            description: "Foreign key to the property involved in the transaction"
+            data_tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: ref('properties')
+                    field: property_id
+          - name: client_id
+            description: "Foreign key to the base clients"
+            data_tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: ref('clients')
+                    field: client_id
+          - name: agent_id
+            description: "Foreign key to the agent involved in the transaction"
+            data_tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: ref('agents')
+                    field: agent_id
+          - name: payment_id
+            description: "Foreign key to the payment details associated with the transaction"
+            data_tests:
+              - relationships:    
+                  arguments:
+                    to: ref('payment_details')
+                    field: payment_id
+          - name: transaction_type
+            description: "Type of transaction (e.g., sale, rental)"
+          - name: transaction_date
+            description: "Date when the transaction occurred"
+          - name: agreed_price
+            description: "Agreed price for the transaction"
+          - name: listing_price
+            description: "Original listing price of the property"
+          - name: discount_amount
+            description: "Discount amount applied to the transaction, if any" 
+          - name: commission_rate
+            description: "Commission rate applied to the transaction, if any"
+          - name: commission_amount
+            description: "Commission amount paid to the agent for the transaction"
+          - name: status
+            description: "Current status of the transaction (e.g., Pending, Completed, Cancelled, Under Contract)"
+            data_tests:
+            - not_null
+            - accepted_values:
+                arguments:
+                  values: [ 'Completed', 'Cancelled', 'Pending', 'Under Contract' ]
+          - name: contract_start
+            description: "Start date of the contract for rental transactions, if applicable"
+          - name: contract_end
+            description: "End date of the contract for rental transactions, if applicable"
+          - name: notes
+            description: "Additional notes or comments about the transaction"
+          - name: created_at
+            description: "Timestamp when the transaction record was created"
+
+      - name: accm_completion_update
+        description: "Source table for tracking completion updates of transactions in the real estate system"
+        columns:
+          - name: txn_id
+            description: "Unique identifier for the update record"
+            data_tests:
+              - not_null
+              - unique
+          - name: accm-txn_complete_time
+            description: "Foreign key to the transaction being updated"
+

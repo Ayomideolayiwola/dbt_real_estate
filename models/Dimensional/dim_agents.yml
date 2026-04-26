@@ -1,0 +1,43 @@
+version: 2
+
+models:
+  - name: dim_agents
+    description: "Dimension table for real estate agents, including their agency and city information"
+    columns:
+      - name: surrogate_key
+        description: "Surrogate key for the agent dimension"
+        data_tests:
+          - unique
+          - not_null
+      - name: agent_id
+        description: "Unique identifier for the agent"
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('prep_agents')
+                field: agent_id
+      - name: agency_id
+        description: "Foreign key to the agency the agent belongs to"
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('prep_agencies')
+                field: agency_id
+      - name: full_name
+        description: "full name of the agent"
+        data_tests:
+          - not_null
+      - name: specialization
+        description: "Area of specialization for the agent (e.g., residential, commercial)"
+        data_tests:
+          - not_null
+      - name: years_experience
+        description: "Number of years of experience the agent has in the real estate industry"
+        data_tests:
+          - not_null
+      - name: city_id
+        description: "Identifier for the city where the agent's agency is located"
+        data_tests:
+          - not_null

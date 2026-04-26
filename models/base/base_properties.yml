@@ -1,36 +1,36 @@
 version: 2
 
 models:
-  - name: stg_properties
-    description: "Staging model for property listings data"
+  - name: base_properties
+    description: "Base model for property listings data"
     columns:
       - name: property_id
         description: "Unique identifier for the property"
         data_tests:
           - not_null
           - unique
-      - name: type_id
+      - name: property_type_id
         description: "Foreign key to the property type"
         data_tests:
           - not_null
           - relationships:
               arguments:
-                to: ref('stg_property_types')
-                field: type_id
+                to: ref('base_property_types')
+                field: property_type_id
       - name: city_id
         description: "Foreign key to the city where the property is located"
         data_tests:
           - not_null
           - relationships:
               arguments:
-                to: ref('stg_cities')
+                to: ref('base_cities')
                 field: city_id
       - name: agent_id
         description: "Foreign key to the agent responsible for the property"
         data_tests:
           - relationships:
               arguments:
-                to: ref('stg_agents')
+                to: ref('base_agents')
                 field: agent_id
       - name: address
         description: "Full address of the property"

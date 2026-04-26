@@ -1,8 +1,8 @@
 version: 2
 
 models:
-  - name: stg_agencies
-    description: "Staging model for real estate agency data"
+  - name: base_agencies
+    description: "Base model for real estate agency data"
     columns:
       - name: agency_id
         description: "Unique identifier for the agency"
@@ -21,7 +21,7 @@ models:
           - not_null
           - relationships:
               arguments:
-                to: ref('stg_cities')
+                to: ref('base_cities')
                 field: city_id
       - name: address
         description: "Full address of the agency"

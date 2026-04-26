@@ -21,17 +21,10 @@ models:
         description: "Price multiplier for properties in this region compared to the national average"
         data_tests:
           - not_null
-      - name: capital_city
-        description: "Capital city of the region"
-        data_tests:
-          - not_null
       - name: population
         description: "Population of the region"
         data_tests:
           - not_null
-      - name: area_sqkm
-        description: "Area of the region in square kilometers"
-        data_tests:
-          - not_null
+
 
 

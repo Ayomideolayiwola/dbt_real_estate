@@ -1,8 +1,8 @@
 version: 2
 
 models:
-  - name: stg_clients
-    description: "Staging model for client/customer data"
+  - name: base_clients
+    description: "base model for client/customer data"
     columns:
       - name: client_id
         description: "Unique identifier for the client"
@@ -34,7 +34,7 @@ models:
         data_tests:
           - relationships:
               arguments:
-                to: ref('stg_cities')
+                to: ref('base_cities')
                 field: city_id
       - name: iban
         description: "International Bank Account Number for the client"

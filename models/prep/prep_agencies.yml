@@ -13,8 +13,6 @@ models:
         description: "Name of the real estate agency"
         tests:
           - not_null
-      - name: license_number
-        description: "License number or registration code for the agency"
       - name: city_id
         description: "Foreign key to the city where the agency is located"
         data_tests:
