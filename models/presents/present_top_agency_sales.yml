@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: present_top_agency_sales
+    description: "Presentation table showcasing the top-performing real estate agencies based on total sales volume and revenue, including key metrics such as average sale price and commission earned."
+    columns:
+      - name: agency_id
+        description: "Unique identifier for the real estate agency"
+        data_tests:
+          - not_null
+          - unique
+      - name: year
+        description: "Year of the sales data"
+        data_tests:
+          - not_null  
+      - name: agency_name
+        description: "Name of the real estate agency"
+      - name: total_agents
+        description: "Total number of agents working for the agency"
+      - name: total_transactions
+        description: "Total number of transactions completed by the agency in the given year"
+      - name: agency_rank
+        description: "Rank of the agency based on total sales volume in the given year"
+      - name: pct_diff
+        description: "Percentage difference in total sales volume compared to the previous year for the agency"
+      - name: cummulative_pct_diff
+        description: "Cumulative percentage difference in total sales volume compared to the previous year for the agency"

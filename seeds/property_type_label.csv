@@ -1,0 +1,11 @@
+property_type_code,property_type_name,category,description
+APT,Apartment,Residential,Self-contained unit within a larger building
+HSE,House,Residential,Standalone detached residential dwelling
+VIL,Villa,Residential,Luxury detached property with garden
+STD,Studio,Residential,Single open-plan living and sleeping space
+DUP,Duplex,Residential,Two-storey unit within a shared building
+PNT,Penthouse,Residential,Top-floor luxury apartment
+OFF,Office,Commercial,Workspace for business operations
+RTL,Retail,Commercial,Customer-facing commercial space
+WRH,Warehouse,Industrial,Storage and distribution facility
+LND,Land,Land,Undeveloped plot for future construction

@@ -1,0 +1,46 @@
+version: 2
+
+models:
+  - name: present_agent_performance
+    description: "Presentation table for agent performance metrics, including total sales, average sale price, and average days on market for properties sold by each agent."
+    columns:
+      - name: agent_id
+        description: "Unique identifier for the agent"
+        data_tests:
+          - not_null
+          - relationships:  
+              arguments:
+                to: ref('dim_agents')
+                field: agent_id
+      - name: year
+        description: "Year for which the performance metrics are calculated"
+        data_tests:
+          - not_null
+      - name: agent_name
+        description: "Full name of the agent"
+      - name: years_experience
+        description: "Number of years of experience the agent has in the real estate industry"
+      - name: total_deals_completed
+        description: "Total number of deals completed by the agent in the given year"
+      - name: total_sales
+        description: "Total sales amount for the agent in the given year"
+      - name: total_commission
+        description: "Total commission earned by the agent in the given year"
+      - name: Sales
+        description: "Total sales amount for the agent in the given year"
+      - name: Rental
+        description: "Total rental amount for the agent in the given year"
+      - name: Lease
+        description: "Total lease amount for the agent in the given year"
+      - name: Fair
+        description: "Fair value of the agent's performance based on a weighted average of sales, rentals, and leases"
+      - name: Good
+        description: "Good value of the agent's performance based on a weighted average of sales, rentals, and leases"
+      - name: Needs_Renovation
+        description: "Needs Renovation value of the agent's performance based on a weighted average of sales, rentals, and leases"
+      - name: New
+        description: "New value of the agent's performance based on a weighted average of sales, rentals, and leases"
+      - name: Under_Construction
+        description: "Under Construction value of the agent's performance based on a weighted average of sales, rentals, and leases"
+      
+    

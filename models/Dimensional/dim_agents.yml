@@ -25,7 +25,7 @@ models:
               arguments:
                 to: ref('prep_agencies')
                 field: agency_id
-      - name: full_name
+      - name: agent_name
         description: "full name of the agent"
         data_tests:
           - not_null
@@ -37,7 +37,23 @@ models:
         description: "Number of years of experience the agent has in the real estate industry"
         data_tests:
           - not_null
+      - name: hire_date
+        description: "Date when the agent was hired by the agency"
+      - name: email
+        description: "Email address of the agent"
+      - name: phone
+        description: "Phone number of the agent"
+      - name: is_active
+        description: "Indicates whether the agent is currently active (true/false)"
+      - name: region_name
+        description: "Name of the region where the agent's agency is located"      
       - name: city_id
         description: "Identifier for the city where the agent's agency is located"
         data_tests:
           - not_null
+          - relationships:
+              arguments:
+                to: ref('prep_cities')
+                field: city_id
+      - name: population
+        description: "Population of the city where the agent's agency is located"

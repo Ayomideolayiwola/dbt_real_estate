@@ -1,3 +1,5 @@
+-- question: Which agents are performing best in terms of total sales and commission earned in 2025, and how do their performance metrics break down by transaction type and property condition?
+
 with dim_agent as (
     select * from {{ ref('dim_agents') }}
 ),

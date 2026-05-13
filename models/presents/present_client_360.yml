@@ -1,0 +1,77 @@
+version: 2
+
+models:
+  - name: present_client_360
+    description: "360-degree view of clients, combining demographic, transactional, and engagement data for comprehensive client profiles."
+    columns:
+      - name: client_txn_key
+        description: "Unique identifier for the client transaction record"
+        data_tests:
+          - unique
+          - not_null
+      - name: client_id
+        description: "Foreign identifier for the client"
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_clients')
+                field: client_id
+      - name: client_type
+        description: "Type of client (e.g., buyer, seller, renter)"
+      - name: transaction_id
+        description: "Foreign identifier for the transaction"
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('fct_transactions')
+                field: transaction_id
+      - name: transaction_ref
+        description: "Reference code for the transaction, if available"
+      - name: transaction_type
+        description: "Type of transaction (e.g., sale, rental)"
+      - name: transaction_date
+        description: "Date when the transaction occurred"
+      - name: status
+        description: "Current status of the transaction (e.g., pending, completed, cancelled)"
+      - name: agreed_price
+        description: "Agreed price for the transaction"
+      - name: listing_price
+        description: "Listing price of the property involved in the transaction"
+      - name: discount_amount
+        description: "Difference between listing price and agreed price, indicating any discount given"
+      - name: commission_amount
+        description: "Commission amount earned by the agent for the transaction"
+      - name: price_vs_listing
+        description: "Ratio of agreed price to listing price, indicating how close the final price was to the original listing"
+      - name: discount_pct
+        description: "Percentage discount from listing price to agreed price"
+      - name: property_id
+        description: "Foreign identifier for the property involved in the transaction"
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_properties')
+                field: property_id
+      - name: property_type_name
+        description: "Type of the property (e.g., apartment, house, commercial)"
+      - name: city_name
+        description: "Name of the city where the property is located"
+      - name: size_sqm
+        description: "Size of the property in square meters"
+      - name: is_residential
+        description: "Indicates whether the property is residential (true/false)"
+      - name: agent_name
+        description: "Name of the agent involved in the transaction"
+      - name: agency_name
+        description: "Name of the agency the agent belongs to"
+      - name: payment_method
+        description: "Method of payment used in the transaction (e.g., cash, mortgage)"
+      - name: bank_name
+        description: "Name of the bank involved in the transaction, if applicable"
+      - name: mortgage_rate
+        description: "Mortgage interest rate applied to the transaction, if applicable"
+      - name: mortgage_term_years
+        description: "Term of the mortgage in years, if applicable"
+      - name: down_payment_pct
+        description: "Percentage of the down payment made by the client, if applicable"

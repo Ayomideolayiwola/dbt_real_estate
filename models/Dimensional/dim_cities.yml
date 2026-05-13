@@ -1,0 +1,40 @@
+version: 2
+
+models:
+  - name: dim_cities
+    description: "Dimension table for real estate cities, including their region and population information"
+    columns:
+      - name: surrogate_key
+        description: "Surrogate key for the agent dimension"
+        data_tests:
+          - unique
+          - not_null
+      - name: city_id
+        description: "Unique identifier for the city"
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('prep_cities')
+                field: city_id
+      - name: city_name
+        description: "Name of the city"
+      - name: population
+        description: "Population of the city"
+      - name: is_major_city
+        description: "is it a major city (true/false)"
+      - name: region_id
+        description: "Foreign key to the region the city belongs to"
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('prep_regions')
+                field: region_id
+      - name: region_name
+        description: "Name of the region the city belongs to"
+      - name: region_code
+        description: "Code of the region the city belongs to"
+      - name: price_multiplier
+        description: "Price multiplier for the region the city belongs to"
+      

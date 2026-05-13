@@ -1,0 +1,43 @@
+version: 2
+
+models:
+  - name: present_sales_overview
+    description: "Presentation table providing an overview of sales performance, including total sales, average sale price, and sales breakdown by property type and city."
+    columns:
+      - name: year
+        description: "Year of the sales data"
+        data_tests:
+          - not_null
+      - name: month_name
+        description: "Name of the month for the sales data"
+        data_tests:
+          - not_null
+      - name: quarter_name
+        description: "Name of the quarter for the sales data"
+        data_tests:
+          - not_null
+      - name: city_name
+        description: "Name of the city where the sales occurred"
+      - name: property_type_name
+        description: "Type of the property sold (e.g., Residential, Commercial)"
+      - name: is_residential
+        description: "Indicates whether the property is residential (true/false)" 
+      - name: total_sales
+        description: "Total number of sales in the given year and month"
+      - name: total_revenue
+        description: "Total revenue generated from sales in the given year and month"
+      - name: avg_sale_price
+        description: "Average sale price of properties sold in the given year and month"
+      - name: min_sale_price
+        description: "Minimum sale price of properties sold in the given year and month"
+      - name: max_sale_price
+        description: "Maximum sale price of properties sold in the given year and month"
+      - name: avg_discount_pct
+        description: "Average discount percentage applied to sales in the given year and month"
+      - name: total_discounts_given
+        description: "Total amount of discounts given in sales for the given year and month"
+      - name: total_commissions
+        description: "Total commissions earned from sales in the given year and month"
+      - name: avg_commission_rate
+        description: "Average commission rate applied to sales in the given year and month"
+        

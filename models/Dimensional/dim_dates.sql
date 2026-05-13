@@ -1,6 +1,6 @@
 -- dim_date: Generated using dbt_utils.date_spine
 -- Covers a sensible range for a real estate analytics project
--- No seed file needed — generated entirely in SQL!
+
 
 with date_spine as (
     {{ dbt_utils.date_spine(

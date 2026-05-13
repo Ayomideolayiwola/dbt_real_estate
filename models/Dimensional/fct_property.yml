@@ -1,0 +1,51 @@
+version: 2
+
+models:
+  - name: fct_property
+    description: "Fact table for real estate properties, including their attributes and transaction history"
+    columns:
+      - name: property_id
+        description: "Unique identifier for the property"
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_properties')
+                field: property_id
+      - name: property_type_name
+        description: "Type of the property (e.g., apartment, house, commercial)"
+      - name: city_name
+        description: "Name of the city where the property is located"
+      - name: region_name
+        description: "Name of the region where the property is located"
+      - name: is_residential
+        description: "Indicates whether the property is residential (true/false)"
+      - name: size_sqm
+        description: "Size of the property in square meters"
+      - name: num_bedrooms
+        description: "Number of bedrooms in the property (if applicable)"
+      - name: num_bathrooms
+        description: "Total number of bathrooms in the property (if applicable)"
+      - name: has_parking
+        description: "Indicates whether the property has parking available (true/false)"
+      - name: has_garden
+        description: "Indicates whether the property has a garden (true/false)"
+      - name: has_balcony
+        description: "Indicates whether the property has a balcony (true/false)"
+      - name: condition_status
+        description: "Condition status of the property (e.g., new, good, needs renovation)"
+      - name: energy_class
+        description: "Energy efficiency class of the property (e.g., A, B, C)"
+      - name: listing_price
+        description: "Listing price of the property"
+      - name: is_available
+        description: "Indicates whether the property is currently available for sale (true/false)"
+      - name: listed_at
+        description: "Date when the property was listed for sale"
+      - name: last_transaction_date
+        description: "Date of the last transaction involving the property"
+      - name: times_transacted
+        description: "Number of times the property has been transacted"
+      - name: days_on_market
+        description: "Number of days the property has been on the market since it was listed"
+    

@@ -1,0 +1,52 @@
+version: 2
+
+models:
+  - name: dim_clients
+    description: "Dimension table for real estate clients"
+    columns:
+      - name: client_id
+        description: "Unique identifier for the client"
+        data_tests:
+          - not_null
+          - unique
+      - name: city_id
+        description: "foreign key to the city where the client is located "
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('prep_cities')
+                field: city_id
+      - name: region_id
+        description: "foreign key to the region where the client is located "
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('prep_regions')
+                field: region_id
+      - name: client_type
+        description: "Type of client"
+      - name: client_name
+        description: "Name of the client"
+      - name: date_of_birth
+        description: "Date of birth of the client"
+      - name: client_email
+        description: "Email address of the client"
+      - name: client_phone
+        description: "Phone number of the client"
+      - name: address
+        description: "Address of the client"
+      - name: city_name
+        description: "Name of the city where the client is located"
+      - name: region_name
+        description: "Name of the region where the client is located"
+      - name: nationality
+        description: "Nationality of the client"
+      - name: is_verified
+        description: "Indicates whether the client's identity has been verified (true/false)"
+      - name: registered_at
+        description: "Date when the client registered with the real estate platform"
+      - name: population
+        description: "Population of the city where the client is located"
+

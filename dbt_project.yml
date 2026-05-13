@@ -22,7 +22,7 @@ models:
       +materialized: view
     prep:
       +materialized: table
-    intermediate:
+    dimensional:
       +materialized: table
-    marts:
+    presents:
       +materialized: table

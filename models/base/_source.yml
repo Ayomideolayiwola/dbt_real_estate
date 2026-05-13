@@ -24,7 +24,7 @@ sources:
             description: "Capital city of the region"
           - name: population
             description: "Population of the region" 
-          - name: area_sqkm 
+          - name: area_sqkm
             description: "Area of the region in square kilometers"
 
       - name: cities       
@@ -41,7 +41,7 @@ sources:
               - not_null
               - relationships:
                   arguments:
-                    to: ref('regions')
+                    to: source('real_estate', 'regions')
                     field: region_id
           - name: city_name
             description: "Name of the city"
@@ -105,7 +105,7 @@ sources:
               - not_null
               - relationships:
                   arguments:
-                    to: ref('cities')
+                    to: source('real_estate', 'cities')
                     field: city_id
           - name: address
             description: "Full address of the agency"
@@ -139,7 +139,7 @@ sources:
               - not_null
               - relationships:
                   arguments:
-                    to: ref('agencies')
+                    to: source('real_estate', 'agencies')
                     field: agency_id
           - name: first_name
             description: "First name of the agent"
@@ -164,6 +164,7 @@ sources:
               - accepted_values:
                   arguments:
                     values: [ 1 ]
+
       - name: clients
         description: "Source table for client/customer data from the real estate system"
         columns:
@@ -197,7 +198,7 @@ sources:
             data_tests:
               - relationships:
                   arguments:
-                    to: ref('cities')
+                    to: source('real_estate', 'cities')
                     field: city_id
           - name: iban
             description: "International Bank Account Number for the client"
@@ -227,7 +228,7 @@ sources:
               - not_null
               - relationships:
                   arguments:
-                    to: ref('property_types')
+                    to: source('real_estate', 'property_types')
                     field: type_id
           - name: city_id
             description: "Foreign key to the city where the property is located"
@@ -235,14 +236,14 @@ sources:
               - not_null
               - relationships:
                   arguments:
-                    to: ref('cities')
+                    to: source('real_estate', 'cities')
                     field: city_id
           - name: agent_id
             description: "Foreign key to the agent responsible for the property"
             data_tests:
               - relationships:
                   arguments:
-                    to: ref('agents')
+                    to: source('real_estate', 'agents')
                     field: agent_id
           - name: address
             description: "Full address of the property"
@@ -284,7 +285,7 @@ sources:
           - name: condition_status
             description: "Condition status of the property"
           - name: build_year
-            description: " when the property was built"
+            description: "Year when the property was built"
           - name: energy_class
             description: "Energy efficiency class of the property (e.g., A, B, C)"
           - name: listing_price
@@ -340,7 +341,7 @@ sources:
               - not_null
               - relationships:
                   arguments:
-                    to: ref('properties')
+                    to: source('real_estate', 'properties')
                     field: property_id
           - name: client_id
             description: "Foreign key to the base clients"
@@ -348,7 +349,7 @@ sources:
               - not_null
               - relationships:
                   arguments:
-                    to: ref('clients')
+                    to: source('real_estate', 'clients')
                     field: client_id
           - name: agent_id
             description: "Foreign key to the agent involved in the transaction"
@@ -356,14 +357,15 @@ sources:
               - not_null
               - relationships:
                   arguments:
-                    to: ref('agents')
+                    to: source('real_estate', 'agents')
                     field: agent_id
           - name: payment_id
             description: "Foreign key to the payment details associated with the transaction"
             data_tests:
+              - not_null
               - relationships:    
                   arguments:
-                    to: ref('payment_details')
+                    to: source('real_estate', 'payment_details')
                     field: payment_id
           - name: transaction_type
             description: "Type of transaction (e.g., sale, rental)"
@@ -382,10 +384,10 @@ sources:
           - name: status
             description: "Current status of the transaction (e.g., Pending, Completed, Cancelled, Under Contract)"
             data_tests:
-            - not_null
-            - accepted_values:
-                arguments:
-                  values: [ 'Completed', 'Cancelled', 'Pending', 'Under Contract' ]
+              - not_null
+              - accepted_values:
+                  arguments:
+                    values: [ 'Completed', 'Cancelled', 'Pending', 'Under Contract' ]
           - name: contract_start
             description: "Start date of the contract for rental transactions, if applicable"
           - name: contract_end

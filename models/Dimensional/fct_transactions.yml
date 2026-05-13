@@ -50,6 +50,12 @@ models:
         description: "Date when the transaction occurred"
         data_tests:
           - not_null
+      - name: status
+        description: "Current status of the transaction (e.g., pending, completed, cancelled)"
+      - name: contract_start
+        description: "Start date of the contract, if applicable"
+      - name: contract_end
+        description: "End date of the contract, if applicable"
       - name: agreed_price
         description: "Agreed price for the transaction"
         data_tests:
@@ -70,20 +76,48 @@ models:
         description: "Commission amount calculated for the transaction, if any"
         data_tests:
           - not_null
-      - name: status
-        description: "Current status of the transaction (e.g., pending, completed, cancelled)"
+      - name: price_vs_listing
+        description: "Difference between the agreed price and the original listing price"
+      - name: discount_pct
+        description: "Percentage of the discount applied to the transaction, if any"
+      - name: property_type_name
+        description: "Type of the property involved in the transaction (e.g., apartment, house, commercial)"
+      - name: city_id
+        description: "Identifier for the city where the property is located"
         data_tests:
           - not_null
-          - accepted_values:
+          - relationships:
               arguments:
-                values: [ 'Completed', 'Cancelled', 'Pending', 'Under Contract' ]
-      - name: contract_start
-        description: "Start date of the contract"
-      - name: contract_end
-        description: "End date of the contract"
-      - name: notes
-        description: "Additional notes or comments about the transaction"
-      - name: created_at
-        description: "Timestamp when the transaction record was created"
-        
+                to: ref('dim_cities')
+                field: city_id
+      - name: city_name
+        description: "Name of the city where the property is located"
+      - name: size_sqm
+        description: "Size of the property in square meters"
+      - name: is_residential
+        description: "Indicates whether the property is residential (true/false)"
+      - name: agent_name
+        description: "Name of the agent involved in the transaction"
+      - name: agency_id
+        description: "Identifier for the agency the agent belongs to"
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('prep_agencies')
+                field: agency_id 
+      - name: agency_name
+        description: "Name of the agency the agent belongs to"
+      - name: agent_specialization
+        description: "Area of specialization for the agent (e.g., residential, commercial)"
+      - name: client_name
+        description: "Name of the client involved in the transaction"
+      - name: client_type
+        description: "Type of client involved in the transaction"
+      - name: transaction_year
+        description: "Year when the transaction occurred"
+      - name: transaction_month
+        description: "Month when the transaction occurred"
+      - name: transaction_quarter
+        description: "Quarter when the transaction occurred"
 

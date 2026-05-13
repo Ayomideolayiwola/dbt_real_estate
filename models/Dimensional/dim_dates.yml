@@ -1,0 +1,86 @@
+version: 2
+
+models:
+  - name: dim_dates
+    description: "Dimension table for dates, including various date parts and flags for weekends and holidays"
+    columns:
+      - name: date_id
+        description: "Unique identifier for the date (YYYYMMDD format)"
+        data_tests:
+          - not_null
+          - unique
+      - name: full_date
+        description: "The full date in date format"
+        data_tests:
+          - not_null
+      - name: year
+        description: "Year part of the date"
+        data_tests:
+          - not_null
+      - name: quarter_number
+        description: "Quarter of the year (1-4)"
+        data_tests:
+          - not_null
+      - name: quarter_name
+        description: "Name of the quarter (e.g., Q1, Q2, Q3, Q4)"
+        data_tests:
+          - not_null
+      - name: year_quarter
+        description: "Combination of year and quarter (e.g., 2024-Q1)"
+        data_tests:
+          - not_null
+      - name: month_number
+        description: "Month of the year (1-12)"
+        data_tests:
+          - not_null
+      - name: month_name
+        description: "Name of the month (e.g., January, February)"
+        data_tests:
+          - not_null
+      - name: month_short_name
+        description: "Short name of the month (e.g., Jan, Feb)"
+        data_tests:
+          - not_null
+      - name: year_month
+        description: "Combination of year and month (e.g., 2024-01)"
+        data_tests:
+          - not_null
+      - name: week_of_year
+        description: "Week number of the year (1-53)"
+        data_tests:
+          - not_null
+      - name: day_of_week
+        description: "Day of the week (1=Monday, 7=Sunday)"
+        data_tests:
+          - not_null
+      - name: day_name
+        description: "Name of the day of the week (e.g., Monday, Tuesday)"
+        data_tests:
+          - not_null
+      - name: day_short_name
+        description: "Short name of the day of the week (e.g., Mon, Tue)"
+        data_tests:
+          - not_null
+      - name: day_of_month
+        description: "Day of the month (1-31)"
+        data_tests:
+          - not_null
+      - name: day_of_year
+        description: "Day number of the year (1-366)"
+        data_tests:
+          - not_null
+      - name: is_weekend
+        description: "Flag indicating whether the date falls on a weekend (true/false)"
+        data_tests:
+          - not_null
+      - name: is_weekday
+        description: "Flag indicating whether the date falls on a weekday (true/false)"
+        data_tests:
+          - not_null
+      - name: is_last_day_of_month
+        description: "Flag indicating whether the date is the last day of the month (true/false)"
+        data_tests:
+          - not_null
+      - name: is_future_date
+        description: "Flag indicating whether the date is in the future (true/false)"
+        

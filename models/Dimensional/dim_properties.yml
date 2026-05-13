@@ -1,0 +1,69 @@
+version: 2
+
+models:
+  - name: dim_properties
+    description: "Dimension table for real estate properties, including their location and attribute information"
+    columns:
+      - name: property_id
+        description: "Unique identifier for the property"
+        data_tests:
+          - not_null
+          - unique
+      - name: property_type_name
+        description: "Type of the property (e.g., apartment, house, commercial)"
+      - name: city_id
+        description: "Identifier for the city where the property is located"
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('prep_cities')
+                field: city_id
+      - name: city_name
+        description: "Name of the city where the property is located"
+      - name: region_id
+        description: "Identifier for the region where the property is located"
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('prep_regions')
+                field: region_id
+      - name: region_name
+        description: "Name of the region where the property is located"
+      - name: address
+        description: "Address of the property"
+      - name: floor_number
+        description: "Floor number of the property (if applicable)"
+      - name: total_floors
+        description: "Total number of floors in the building (if applicable)"
+      - name: size_sqm
+        description: "Size of the property in square meters"
+      - name: num_bedrooms
+        description: "Number of bedrooms in the property (if applicable)"
+      - name: num_rooms
+        description: "Total number of rooms in the property (if applicable)"
+      - name: num_bathrooms
+        description: "Total number of bathrooms in the property (if applicable)"
+      - name: has_parking
+        description: "Indicates whether the property has parking available (true/false)"
+      - name: has_garden
+        description: "Indicates whether the property has a garden (true/false)"
+      - name: has_balcony
+        description: "Indicates whether the property has a balcony (true/false)"
+      - name: amenities
+        description: "List of amenities available with the property (e.g., pool, gym)"
+      - name: condition_status
+        description: "Condition status of the property (e.g., new, good, needs renovation)"
+      - name: build_year
+        description: "Year the property was built"
+      - name: energy_class
+        description: "Energy efficiency class of the property (e.g., A, B, C)"
+      - name: listing_price
+        description: "Listing price of the property"
+      - name: listed_at
+        description: "Date when the property was listed for sale"
+      - name: is_available
+        description: "Indicates whether the property is currently available for sale (true/false)"
+      - name: is_residential
+        description: "Indicates whether the property is residential (true/false)"

@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: present_breakdown_year_transac
+    description: "Preparation table for transactions. Cleaned and standardized real estate transaction data."
+    columns:
+      - name: year
+        description: "Year of the transaction"
+        data_tests:
+          - not_null
+      - name: completed_transactions
+        description: "Number of completed transactions in the given year"
+      - name: pending_transactions
+        description: "Number of pending transactions in the given year"
+      - name: cancelled_transactions
+        description: "Number of cancelled transactions in the given year"
+      - name: under_contract_transactions
+        description: "Number of transactions that are currently under contract in the given year"

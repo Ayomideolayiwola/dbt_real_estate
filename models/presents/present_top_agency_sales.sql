@@ -36,8 +36,8 @@ order by total_transactions desc
 
 
 select 
-year,
 agency_id,
+year,
 agency_name,
 total_agents,
 total_transactions,

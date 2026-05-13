@@ -1,0 +1,29 @@
+version: 2
+
+seeds:
+  - name: property_type_label
+    description: "Lookup table for property types used in the real estate system"
+    columns:
+      - name: property_type_code
+        description: "Short code for the property type (e.g. APT, HSE, VIL)"
+        data_tests:
+          - unique
+
+      - name: property_type_name
+        description: "Full name of the property type (e.g. Apartment, House, Villa)"
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['Apartment', 'House', 'Villa', 'Studio', 'Duplex', 'Penthouse', 'Office', 'Retail', 'Warehouse', 'Land']
+
+      - name: category
+        description: "Category the property type belongs to (Residential, Commercial, Industrial, Land)"
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['Residential', 'Commercial', 'Industrial', 'Land']
+
+      - name: description
+        description: "Brief description of the property type"
+        data_tests:
+          - not_null
