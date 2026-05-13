@@ -21,14 +21,14 @@ jobs:
           python-version: "3.11"
 
       - name: Install dbt-snowflake
-        run: pip install -r real_estate/requirements.txt
+        run: pip install -r dbt_real_estate/requirements.txt
 
       - name: Install dbt packages
-        working-directory: real_estate
+        working-directory: dbt_real_estate
         run: dbt deps
 
       - name: Run dbt build
-        working-directory: real_estate
+        working-directory: dbt_real_estate
         env:
           SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
           SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
