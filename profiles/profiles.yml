@@ -1,4 +1,4 @@
-real_estate:
+dbt_real_estate:
   target: ci
   outputs:
     ci:
