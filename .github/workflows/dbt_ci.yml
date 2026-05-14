@@ -4,7 +4,6 @@ on:
     branches: [main]
   push:
     branches: [main]
-
 jobs:
   dbt-build:
     name: dbt build
@@ -13,16 +12,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
+      - name: Install dbt-fusion
+        run: curl -fsSL https://public.cdn.getdbt.com/fs/install/install.sh | sh -s -- --update
 
-      - name: Install dbt-snowflake
-        run: pip install -r requirements.txt
+      - name: Add dbt to PATH
+        run: echo "$HOME/.local/bin" >> $GITHUB_PATH
 
       - name: Install dbt packages
-        run: dbt deps                        # ← removed working-directory
+        run: dbt deps
 
       - name: Run dbt build
         env:
@@ -33,5 +30,4 @@ jobs:
           SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
           SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
           SNOWFLAKE_SCHEMA: ${{ secrets.SNOWFLAKE_SCHEMA }}
-        run: |
-          dbt build --profiles-dir profiles --target ci   # ← removed working-directory
+        run: dbt build --profiles-dir profiles --target ci
