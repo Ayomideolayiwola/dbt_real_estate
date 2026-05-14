@@ -21,7 +21,7 @@ jobs:
           python-version: "3.11"
 
       - name: Install dbt-snowflake
-        run: pip install -r dbt_real_estate/requirements.txt
+        run: pip install -r requirements.txt
 
       - name: Install dbt packages
         working-directory: dbt_real_estate
