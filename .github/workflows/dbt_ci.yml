@@ -1,5 +1,4 @@
 name: dbt CI
-
 on:
   pull_request:
     branches: [main]
@@ -10,7 +9,6 @@ jobs:
   dbt-build:
     name: dbt build
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -24,11 +22,9 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Install dbt packages
-        working-directory: dbt_real_estate
-        run: dbt deps
+        run: dbt deps                        # ← removed working-directory
 
       - name: Run dbt build
-        working-directory: dbt_real_estate
         env:
           SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
           SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
@@ -38,4 +34,4 @@ jobs:
           SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
           SNOWFLAKE_SCHEMA: ${{ secrets.SNOWFLAKE_SCHEMA }}
         run: |
-          dbt build --profiles-dir profiles --target ci
+          dbt build --profiles-dir profiles --target ci   # ← removed working-directory
